@@ -1,4 +1,5 @@
 ---
+import ImgWelcome from "../assets/imgWelcome.webp";
 import Image from "astro/components/Image.astro";
 import CalendarySvg from "../assets/svg/Calendary.svg";
 import ClockSvg from "../assets/svg/Clock.svg";
@@ -23,7 +24,13 @@ const horaMedellin = new Date().toLocaleTimeString("es-CO", {
 >
   <!-- Imagen -->
   <div class="flex justify-center">
-    <img src="/imgWelcome.webp" alt="..." />
+    <Image
+      src={ImgWelcome}
+      alt="Imagen de Bienvenida, Un helado Alegre"
+      width={250}
+      height={250}
+      class="drop-shadow-lg"
+    />
   </div>
 
   <!-- Información -->
