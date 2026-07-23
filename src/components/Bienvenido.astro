@@ -1,21 +1,15 @@
 ---
-import ImgWelcome from "../assets/ImgWelcome.webp";
+import ImgWelcome from "../assets/Images/ImgWelcome.webp";
 import Image from "astro/components/Image.astro";
 import CalendarySvg from "../assets/svg/Calendary.svg";
 import ClockSvg from "../assets/svg/Clock.svg";
 
 // FECHA
-const fechaHoy = new Date();
-const fechaCortaCo = fechaHoy.toLocaleDateString("es-CO", {
+const fechaCortaCo = new Date().toLocaleDateString("es-CO", {
   day: "numeric",
   month: "numeric",
   year: "numeric",
-});
-
-// HORA
-const horaMedellin = new Date().toLocaleTimeString("es-CO", {
-  hour: "2-digit",
-  minute: "2-digit",
+  timeZone: "America/Bogota",
 });
 ---
 
@@ -68,9 +62,26 @@ const horaMedellin = new Date().toLocaleTimeString("es-CO", {
 
         <div>
           <p class="text-sm text-gray-500">Hora</p>
-          <strong class="text-samy">{horaMedellin}</strong>
+          <!-- id para que el script actualice la hora en tiempo real -->
+          <strong id="hora-medellin" class="text-samy">--:--</strong>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  // Hora
+  function actualizarHora() {
+    const el = document.getElementById("hora-medellin");
+    if (!el) return;
+    el.textContent = new Date().toLocaleTimeString("es-CO", {
+      hour: "2-digit",
+      minute: "2-digit",
+      timeZone: "America/Bogota",
+    });
+  }
+
+  actualizarHora();
+  setInterval(actualizarHora, 30000);
+</script>
